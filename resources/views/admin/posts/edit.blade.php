@@ -68,11 +68,20 @@
 <!--=============================================== Закончил здесь ======================================================================-->
         <div class="form-group">
           <label for="tags">Изображение</label>
-          <select class="select2" multiple="multiple" name="tags[]" id="tags" data-placeholder="Выбор тегов" style="width: 100%">
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" name="thumbnail" id="thumbnail class="custom-file-input">
+              <label for="thubnail" class="custom-file-label">Выберите файл</label>
+            </div>
+          </div>
+
+          <!-- <select class="select2" multiple="multiple" name="tags[]" id="tags" data-placeholder="Выбор тегов" style="width: 100%">
           @foreach
             <option value="{{ $k }} @if(in_array($k, $post->tags->pluck('id')->all())) selected @endif>{{ $v }} "></option>
           @endforeach
-          </select>
+          </select> -->
+          
+          <div><img src="{{ $post->getImage() }}" alt="" class="img-thumbnail mt-2" width="200"></div>
       </div>
 
             </div>
