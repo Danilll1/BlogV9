@@ -28,6 +28,12 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{route('register.create')}}" class="nav-link">Register</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Login</a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->

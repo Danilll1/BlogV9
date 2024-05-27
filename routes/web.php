@@ -19,9 +19,9 @@ use App\Http\Controllers\Admin\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [MainController::class, 'index']) ->name('admin.index');
