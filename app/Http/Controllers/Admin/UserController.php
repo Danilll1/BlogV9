@@ -31,8 +31,37 @@ class UserController extends Controller
 
         session()->flash('success', 'Регистрация пройдена');
         Auth::login($user);
-        return redirect()->route('home');
+
+        return redirect()->route('admin.index');
+        
     }
+
+    public function loginForm() {
+        return view('user.login');
+    }
+
+    public function login(Request $request) {
+        // dd($request->all());
+        $request->validate([
+            'email' => 'required|email',
+            'password'=> 'required'
+        ]);
+
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password'=> $request->password,
+        ])) {
+            session()->flash('success', 'Вы вошли!');
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.index');
+            }
+        }
+        return redirect()->back()->with('error', 'Неверный логин или пароль...');
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('login.create');
 
     
 

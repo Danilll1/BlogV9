@@ -38,7 +38,16 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+    @foreach($posts as $post)
+        <div class="post">
+            <h2>{{ $post->title }}</h2>
+            <p>{{ $post->description }}</p>
+            <p>{!! $post->content !!}</p>
+            <img src="{{ asset('uploads/' . $post->thumbnail) }}" alt="Thumbnail" class="img-thumbnail img-fluid" style="width: 300px; height: 300px">
+            <p>Категория: {{ $post->category->title }}</p>
+            <p>Опубликовано: {{ $post->created_at->format('F j, Y') }}</p>
+        </div>
+    @endforeach
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

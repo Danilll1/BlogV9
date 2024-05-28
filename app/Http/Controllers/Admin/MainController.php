@@ -16,6 +16,7 @@ class MainController extends Controller
         // $tag = new Tag();
         // $tag->title = 'Курица';
         // $tag->save();
-        return view ('admin.index');
+        $posts = Post::all(); 
+        return view('admin.index', compact('posts'));
     }
 }

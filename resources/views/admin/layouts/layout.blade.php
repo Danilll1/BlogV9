@@ -34,13 +34,21 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
         </li>
+        @if(!Auth::check())
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{route('register.create')}}" class="nav-link">Register</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Login</a>
+          <a href="{{route('login.create')}}" class="nav-link">Login</a>
+        </li>
+        @endif
+        if(Auth::check())
+        
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{ route('logout')}}" class="nav-link">Logout</a>
         </li>
       </ul>
+      @endif
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
@@ -177,12 +185,11 @@
       <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
+          @if(Auth::check())
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="" class="d-block">{{ Auth::user()->name }}</a>
           </div>
+          @endif
         </div>
 
         <!-- SidebarSearch Form -->
@@ -208,6 +215,7 @@
                 <p>Главная</p>
               </a>
             </li>
+            @if(Auth::check() && Auth::user()->is_admin)
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-archive"></i>
@@ -282,6 +290,8 @@
                 
               </ul>
             </li>
+
+            @endif
 
           </ul>
         </nav>
