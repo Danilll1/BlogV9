@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CatController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\PostsController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resource('/categories', CategoryController::class);
@@ -19,12 +20,16 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
 });
 
+Route::get('home', [PostsController::class, 'index'])->name('home');
+Route::get('/article', [PostsController::class, 'show'])->name('posts.single');
+
 Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/', [MainController::class, 'index']) ->name('admin.index');
 
-Route::get('/', function(){
-    return view('home.home');
-})->name('home');
+// Route::get('/', function(){
+//     return view('home.home');
+// })->name('home');
+
 
