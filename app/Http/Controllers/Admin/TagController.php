@@ -40,9 +40,11 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        
+        $tag = Tag::where('slug', $slug)->firstOrFail();
+        $posts = $tag->posts()->orderBy('id', 'desc')->paginate(2);
+        return view('tags.show', compact('tag', 'posts'));
     }
 
     /**
