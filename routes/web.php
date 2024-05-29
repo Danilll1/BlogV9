@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CatController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +38,12 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
     
 });
-
 Route::get('/article', [PostsController::class, 'index'])->name('home');
 Route::get('/article/{slug}', [PostsController::class, 'show'])->name('posts.single');
-
-
-
-
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
 Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
+
+Route::get('/search', [SearchController::class, 'index']) ->name('search');
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
 Route::post('/login', [UserController::class, 'login'])->name('login');
