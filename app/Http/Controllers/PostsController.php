@@ -13,7 +13,7 @@ class PostsController extends Controller
     public function index()
     {
         //return view('posts.index');
-        $posts = Post::with('category')->orderBy('id', 'desc')->paginate(2);
+        $posts = Post::with('category')->orderBy('id', 'desc')->paginate(20);
         return view('posts.index', compact('posts'));
     }
 
@@ -38,7 +38,11 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        return view('posts.index');
+        //return view('posts.index');
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $post->views += 1;
+        $post->update();
+        return view('posts.show', compact('post'));
     }
 
     /**

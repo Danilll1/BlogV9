@@ -20,10 +20,13 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
 });
 
-Route::get('home', [PostsController::class, 'index'])->name('home');
+//Route::get('home', [PostsController::class, 'index'])->name('home');
 
-Route::get('/article/{slug}', [PostsController::class, 'index'])->name('posts.single');
+Route::get('/article', [PostsController::class, 'index'])->name('home');
+Route::get('/article/{slug}', [PostsController::class, 'show'])->name('posts.single');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
+
+Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
 Route::post('/login', [UserController::class, 'login'])->name('login');
