@@ -2,20 +2,18 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class Post extends Model
 {
     use Sluggable;
 
     protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail'];
-
-
 
     public function tags()
     {
@@ -55,10 +53,7 @@ class Post extends Model
         }
         return asset("uploads/{$this->thumbnail}");
     }
-
-    public function getPostDaate() {
-        return Carbon::createFromFromat('Y-m-d H:i:s', $this->created_at)->format('d F, Y');
+    public function getPostDate() {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d F, Y');
     }
-
-    
 }

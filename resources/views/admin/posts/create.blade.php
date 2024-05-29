@@ -29,7 +29,7 @@
                     <h3 class="card-title">Создание статьи</h3>
                 </div>
                 <!--================================================================================-->
-                <form role="form" method="post" action="{{ route('posts.store') }}"enctype="multipart/from-data">
+                <form role="form" method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -40,6 +40,7 @@
 
 
                         <div class="form-group">
+                            <label for="description">Цитата</label>
                             <textarea class="form-control @error('title') is-invalid @enderror" id="description" name="description"
                                 placeholder="Цитата ..."></textarea>
                         </div>
@@ -62,13 +63,14 @@
 
                         <div class="form-group">
                             <label for="tags">Теги</label>
-                            <select class="select2" id="tags" name="tags[]" multiple="multiple" data-placeholder="Выбор тегов ...
+                            <select class="select2" id="tags" name="tags[]" multiple="multiple" data-placeholder="Выбор тегов ..."
                                 style="width: 100%">
                                 @foreach ($tags as $k => $v)
                                     <option value="{{ $k }}">{{ $v }}</option>
                                 @endforeach
                             </select>
                         </div>
+
 
                         <div class="form-group">
                             <label for="thumbnail">Изображение</label>
@@ -87,10 +89,8 @@
                 </form>
                 <!--================================================================================-->
             </div>
-        </div>
     </div>
     </div>
-     
     </div>
     </section>
 @endsection

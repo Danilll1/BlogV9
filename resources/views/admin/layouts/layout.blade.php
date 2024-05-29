@@ -15,7 +15,6 @@
 
   <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -42,13 +41,13 @@
           <a href="{{route('login.create')}}" class="nav-link">Login</a>
         </li>
         @endif
-        if(Auth::check())
         
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('logout')}}" class="nav-link">Logout</a>
-        </li>
+        @if(Auth::check())
+    <li class="nav-item d-none d-sm-inline-block"> 
+        <a href="{{ route('logout') }}" class="nav-link">Logout</a> 
+    </li>
+@endif
       </ul>
-      @endif
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
@@ -186,11 +185,11 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           @if(Auth::check())
-          <div class="info">
-            <a href="" class="d-block">{{ Auth::user()->name }}</a>
-          </div>
-          @endif
+          <div class="info"> 
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a> 
         </div>
+        @endif
+      </div>
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -215,7 +214,7 @@
                 <p>Главная</p>
               </a>
             </li>
-            @if(Auth::check() && Auth::user()->is_admin)
+            @if(Auth::check() && Auth::user()->is_admin) 
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-archive"></i>
@@ -290,9 +289,7 @@
                 
               </ul>
             </li>
-
-            @endif
-
+          @endif
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -332,13 +329,14 @@
   <!-- AdminLTE for demo purposes -->
   <script src="/assets/js/demo.js"></script>
 
-  <script>
-  $(function () {
-    $('.select2').select2()
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
+<script>
+$(function () {
+  $('.select2').select2()
+
+  $('.select2bs4').select2({
+    theme: 'bootstrap4'
   })
+})
 </script>
 
 </body>

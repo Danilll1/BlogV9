@@ -139,7 +139,6 @@
                                         <small><a href="#" title=""><i class="fa fa-eye"></i>Просмотры: {{ $post->views }}</a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end blog-box -->
-
                                 <div class="blog-title-area">
                                     @if($post->tags->count())
                                     <div class="tag-cloud-single">
@@ -157,7 +156,6 @@
                                         </ul>
                                     </div><!-- end post-sharing -->
                                 </div><!-- end title -->
-                                
                                 <hr class="invis">
                                 @endforeach
 

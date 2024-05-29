@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use  Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -44,14 +44,15 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
-
+        
         $data['thumbnail'] = Post::uploadImage($request);
 
         $post = Post::create($data);
         $post->tags()->sync($request->tags);
 
-        //var_dump($request->all());
-        
+        // var_dump($request->all());
+
+
         return redirect()->route('posts.index')->with('success', 'Статья добавлена');
     }
 
@@ -93,7 +94,6 @@ class PostController extends Controller
 
         $post->update($data);
         $post->tags()->sync($request->tags);
-
 
         return redirect()->route('posts.index')->with('success', 'Изменения сохранены');
     }

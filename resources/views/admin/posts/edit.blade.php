@@ -26,18 +26,19 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Статьи "{{ $post->title }}"</h3>
+          <h3 class="card-title">Статья "{{ $post->title }}"</h3>
         </div>
-        <form role="form" method="post" action="{{route('posts.update', ['post' => $post->id])}}" enctype="multipart/from-data">
+        <form role="form" method="post" action="{{route('posts.update', ['post' => $post->id])}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            < class="card-body">
+            <div class="card-body">
 
 
                 <div class="form-group">
                     <label for="title">Название</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Название" value="{{$post->title }}">
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Название" value="{{ $post->title }}">
                 </div>
+
                 <div class="form-group">
                   <label for="description">Цитата</label>
                   <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Цитата" rows="3">{{ $post->description }}</textarea>
@@ -65,29 +66,30 @@
             @endforeach
             </select>
         </div>
+<div class="form-group">
+  <label for="tags">Изображение</label>
+  <div class="input-group">
+    <div class="custom-file">
+      <input type="file" name="thumbnail" id="thumbnail class="custom-file-input">
+      <label for="thumbnail" class="custom-file-label">Выберите файл</label>
+    </div>
+  </div>
 
-        <div class="form-group">
-            <label for="tags">Изображение</label>
-        <div class="input-group">
-          <div class="custom-file">
-            <input type="file" name="thumbnail" id="thumbnail class="custom-file-input">
-            <label for="thumbnail" class="custom-file-label">Выберите файл</label>
-          </div>
-        </div>
-        <select class="select2" multiple="multiple" name="tags[]" id="tags" data-placeholder="Выбор тегов" style="width: 100%">
-        @foreach
-          <option value="{{ $k }} @if(in_array($k, $post->tags->pluck('id')->all())) selected @endif>{{ $v }} "></option>
-        @endforeach
-        </select> 
+  <select class="select2" multiple="multiple" name="tags[]" id="tags" data-placeholder="Выбор тегов" style="width: 100%">
+  @foreach
+    <option value="{{ $k }} @if(in_array($k, $post->tags->pluck('id')->all())) selected @endif>{{ $v }} "></option>
+  @endforeach
+  </select> 
+  
+  <div><img src="{{ $post->getImage() }}" alt="" class="img-thumbnail mt-2" width="200"></div>
+</div>
 
-        <div><img src="{{ $post->getImage() }}" alt="" class="img-thumbnail mt-2" width="200"></div>
-      </div>
-
-      <div class="card-footer">
+    </div>
+    <div class="card-footer">
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </div>   
 </form>
-
+    
     </div>
 </div>
 </div>

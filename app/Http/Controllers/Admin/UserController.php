@@ -21,19 +21,19 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password'=> 'required|confirmed'
         ]);
-        //dd($request->all());
+        // var_dump($request->all());
 
-        $user = User::create([
+        $user = User::create ([
             'name'=> $request->name,
             'email'=> $request->email,
             'password' => bcrypt($request->password),
         ]);
 
+
+        
         session()->flash('success', 'Регистрация пройдена');
         Auth::login($user);
-
         return redirect()->route('admin.index');
-        
     }
 
     public function loginForm() {
@@ -62,8 +62,5 @@ class UserController extends Controller
     public function logout() {
         Auth::logout();
         return redirect()->route('login.create');
-
-    
     }
-    
 }

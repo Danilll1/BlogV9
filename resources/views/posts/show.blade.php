@@ -286,9 +286,7 @@
 
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         <div class="sidebar">
-
                             @include('admin.layouts.sidebar')
-                            
                         </div><!-- end sidebar -->
                     </div><!-- end col -->
                 </div><!-- end row -->

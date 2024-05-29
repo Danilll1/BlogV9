@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
@@ -12,7 +12,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //return view('posts.index');
         $posts = Post::with('category')->orderBy('id', 'desc')->paginate(20);
         return view('posts.index', compact('posts'));
     }
@@ -38,7 +37,6 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        //return view('posts.index');
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->views += 1;
         $post->update();
