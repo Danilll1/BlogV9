@@ -21,7 +21,9 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('home', [PostsController::class, 'index'])->name('home');
-Route::get('/article', [PostsController::class, 'show'])->name('posts.single');
+
+Route::get('/article/{slug}', [PostsController::class, 'index'])->name('posts.single');
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
 Route::post('/login', [UserController::class, 'login'])->name('login');
