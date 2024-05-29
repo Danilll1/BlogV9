@@ -11,7 +11,7 @@
                     <h1>Статьи</h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">  
+                    <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item">Blank Page </li>
                     </ol>
@@ -54,9 +54,9 @@
                                             <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
                                             <td>{{ $post->created_at }}</td>
                                             <td>
-                                                <!-- <a href=" {{ route('posts.edit' , ['posts' => $post->id]) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                {{-- <a href=" {{ route('posts.edit' , ['posts' => $post->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                     <i class="fas fa-pencil-alt"></i>
-                                                </a> -->
+                                                </a> --}}
                                                 <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="post" class="float-left">
                                                     @csrf
                                                     @method('DELETE')
